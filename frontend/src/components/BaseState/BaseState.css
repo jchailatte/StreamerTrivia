@@ -1,0 +1,47 @@
+* {
+     margin: 0;
+     padding: 0;
+ }
+ #title {
+   color:white;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+     background: var(--purple);
+     width: 100%;
+     height: 70px;
+     font-size: 18pt;
+ }
+
+ body {
+     background-color: white;
+     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+     --purple: #6441A4
+ }
+ #textdiv
+ {
+     padding-top:50px;
+ }
+ p.text{
+     text-align:center;
+     color:var(--purple);
+     font-size: 18pt;
+ }
+ #submit{
+     display: block;
+     margin: 0 auto;
+     margin-top: 20px;
+     margin-bottom: 30px;
+     border:none;
+     height:100px;
+     width:204px;
+     border-radius: 5px;
+     color:white;
+     font-size: 24pt;
+     background-color: #C4C4C4;
+
+ }
+ #name{
+     color:purple;
+     text-align:center;
+ }

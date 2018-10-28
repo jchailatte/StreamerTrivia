@@ -1,16 +1,15 @@
 import React from 'react'
 
-import './Question.css'
+import './Answer.css'
 
-export default class Question extends React.Component{
+export default class Answer extends React.Component{
     constructor(props){
         super(props)
 
         //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.state={
             name:'ExampleName',
-            answers:[''],
-            time: '123'
+            answers:['']
         }
     }
 
@@ -49,13 +48,10 @@ export default class Question extends React.Component{
                         <p>Streamer Trivia</p>
                     </header>
                     <div className="questionForm">
-                        <div className ="qViewer"> How do you think {this.state.name} will respond to this question? </div>
+                        <div className ="qViewer"> {this.state.name}'s response: </div>
                         <label htmlFor="question">What's your ideal fantasy pet?</label>
                         <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div>
                     </div>
-                    <div id="countdown"> {this.state.time} seconds left to answer</div>
                 </div>
             )
 

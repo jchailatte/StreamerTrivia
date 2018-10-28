@@ -1,16 +1,15 @@
 import React from 'react'
 
-import './Question.css'
+import './MakeQuestion.css'
 
-export default class Question extends React.Component{
+export default class MakeQuestion extends React.Component{
     constructor(props){
         super(props)
 
         //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.state={
             name:'ExampleName',
-            answers:[''],
-            time: '123'
+            answers:['']
         }
     }
 
@@ -28,13 +27,13 @@ export default class Question extends React.Component{
       })
     }
 
-    makeJSX(options){
+    makeJSX(options, i){
       return options.map((v,i)=>{
         let num = i + 1
         let id = 'answer' + num
 
         return(
-          <label key={id} htmlFor={id}>Answer {i+1}
+          <label key={id} htmlFor={id}>Answer {i +1}
             <input type="text" name={id} id={id} placeholder="Create an option for the streamer" />
           </label>
         )
@@ -45,17 +44,16 @@ export default class Question extends React.Component{
             return (
                 <div className="Question">
                     <header>
-                        Question
+                        Create A Question
                         <p>Streamer Trivia</p>
                     </header>
                     <div className="questionForm">
-                        <div className ="qViewer"> How do you think {this.state.name} will respond to this question? </div>
-                        <label htmlFor="question">What's your ideal fantasy pet?</label>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div>
+                        <label htmlFor="question">Question
+                            <textarea name="question" placeholder={"Create a question you want "+this.state.name+" to answer. Make sure it follows channel rules!"}></textarea>
+                        </label>
+                        {this.makeJSX(this.state.answers)}
+                        <button className="questionSubmit">Submit</button>
                     </div>
-                    <div id="countdown"> {this.state.time} seconds left to answer</div>
                 </div>
             )
 

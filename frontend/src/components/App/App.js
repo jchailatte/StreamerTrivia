@@ -1,5 +1,9 @@
 import React from 'react'
 import Authentication from '../../util/Authentication/Authentication'
+import MakeQuestion from "../MakeQuestion/MakeQuestion"
+import BaseState from "../BaseState/BaseState"
+import Question from "../Question/Question"
+import Answer from "../Answer/Answer"
 
 import './App.css'
 
@@ -8,12 +12,13 @@ export default class App extends React.Component{
         super(props)
         this.Authentication = new Authentication()
 
-        //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null. 
+        //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.twitch = window.Twitch ? window.Twitch.ext : null
         this.state={
             finishedLoading:false,
             theme:'light',
-            isVisible:true
+            isVisible:true,
+            render:'welcome'
         }
     }
 
@@ -49,8 +54,19 @@ export default class App extends React.Component{
 
             this.twitch.listen('broadcast',(target,contentType,body)=>{
                 this.twitch.rig.log(`New PubSub message!\n${target}\n${contentType}\n${body}`)
-                // now that you've got a listener, do something with the result... 
+                // now that you've got a listener, do something with the result...
 
+                switch (body) {
+                  case 'create':
+                    this.setState(render:'create')
+                    break;
+                  case 'answer':
+
+                    break;
+
+                  default:
+
+                }
                 // do something...
 
             })
@@ -70,19 +86,27 @@ export default class App extends React.Component{
             this.twitch.unlisten('broadcast', ()=>console.log('successfully unlistened'))
         }
     }
-    
+
     render(){
         if(this.state.finishedLoading && this.state.isVisible){
-            return (
+            if(this.state.render==='answer'){
+              return (
                 <div className="App">
                     <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
-                        <p>Hello world!</p>
-                        <p>My token is: {this.Authentication.state.token}</p>
-                        <p>My opaque ID is {this.Authentication.getOpaqueId()}.</p>
-                        <div>{this.Authentication.isModerator() ? <p>I am currently a mod, and here's a special mod button <input value='mod button' type='button'/></p>  : 'I am currently not a mod.'}</div>
-                        <p>I have {this.Authentication.hasSharedId() ? `shared my ID, and my user_id is ${this.Authentication.getUserId()}` : 'not shared my ID'}.</p>
+                      <Answer />
                     </div>
                 </div>
+              )
+            }
+            return (
+              <div className="App">
+                  <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
+                    <BaseState />
+                    <MakeQuestion />
+                    <Question />
+                    <Answer />
+                  </div>
+              </div>
             )
         }else{
             return (

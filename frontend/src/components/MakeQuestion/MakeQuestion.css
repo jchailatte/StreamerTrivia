@@ -1,7 +1,3 @@
-/* Help with space between options */
-/* on click change color and submit to server */
-/* help on countdown */
-
 .Question {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -52,28 +48,22 @@
     margin-bottom: 10px;
 }
 
-.Question .questionForm .qViewer {
-    font-weight: 400;
-    font-size: 12px;
-    display: block;
-    margin-bottom: 10px;
+.Question .questionForm textarea {
+    width: 100%;
+    height: 50px;
 }
 
-.Question .questionForm .option {
-    height: 22px;
-    width: 251px;
-    border: solid black 1px;
-    border-radius: 3px;
-    font-weight: 400;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.Question .questionForm input {
+    width: 100%;
+    height: 20px;
+}
+
+.Question .questionForm .questionSubmit {
+    background-color: var(--purple);
+    margin-top: 20px;
+    color: #FFF;
+    width: 80%;
+    height: 25px;
     align-self: center;
-}
-
-.Question #countdown{
-  font-size:12pt;
-  font-weight: 400;
-
+    border-radius: 3px;
 }
