@@ -52,10 +52,11 @@ export default class Question extends React.Component{
                         <div className ="qViewer"> How do you think {this.state.name} will respond to this question? </div>
                         <label htmlFor="question">What's your ideal fantasy pet?</label>
                         <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Dragon </div>
+                        <div className="option"> Unicorn </div> <br/>
+                        <div className="option"> Fish </div>
+                        <div className="countdown"> {this.state.time} seconds left to answer</div>
                     </div>
-                    <div id="countdown"> {this.state.time} seconds left to answer</div>
+
                 </div>
             )
 

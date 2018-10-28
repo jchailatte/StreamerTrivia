@@ -9,7 +9,8 @@ export default class Answer extends React.Component{
         //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.state={
             name:'ExampleName',
-            answers:['']
+            answers:[''],
+            time: '123'
         }
     }
 
@@ -17,40 +18,26 @@ export default class Answer extends React.Component{
 
     }
 
-    addOption(){
-      this.setState(prevState=>{
-        let answers = prevState.answers
-        answers.push('')
-        return {
-          answers
-        }
-      })
-    }
-
-    makeJSX(options){
-      return options.map((v,i)=>{
-        let num = i + 1
-        let id = 'answer' + num
-
-        return(
-          <label key={id} htmlFor={id}>Answer {i+1}
-            <input type="text" name={id} id={id} placeholder="Create an option for the streamer" />
-          </label>
-        )
-      })
-    }
-
     render(){
             return (
-                <div className="Question">
+                <div className="Answer">
                     <header>
-                        Question
+                        Answer
                         <p>Streamer Trivia</p>
                     </header>
-                    <div className="questionForm">
-                        <div className ="qViewer"> {this.state.name}'s response: </div>
-                        <label htmlFor="question">What's your ideal fantasy pet?</label>
-                        <div className="option"> Dragon </div> <br/>
+                    <div className="answerForm">
+                        <div className ="text"> {this.state.name}'s response: </div>
+                        <div className="question">What's your ideal fantasy pet?</div>
+                        <div className="answerContainer">
+                          <div className="answerNot"> Dragon </div>
+                        </div>
+                        <div className="answerContainer">
+                          <div className="answerYes"> Unicorn </div>
+                        </div>
+                        <div className="answerContainer">
+                          <div className="answerNot"> Fish </div>
+                        </div>
+                        <div className="countdown"> {this.state.time} seconds left to next question</div>
                     </div>
                 </div>
             )

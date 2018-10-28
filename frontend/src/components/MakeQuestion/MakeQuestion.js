@@ -51,7 +51,15 @@ export default class MakeQuestion extends React.Component{
                         <label htmlFor="question">Question
                             <textarea name="question" placeholder={"Create a question you want "+this.state.name+" to answer. Make sure it follows channel rules!"}></textarea>
                         </label>
-                        {this.makeJSX(this.state.answers)}
+                        <label key="answer1" htmlFor="answer1">Answer 1
+                          <input type="text" name="answer1" id="answer1" placeholder="Create an option for the streamer" />
+                        </label>
+                        <label key="answer2" htmlFor="answer2">Answer 2
+                          <input type="text" name="answer2" id="answer2" placeholder="Create an option for the streamer" />
+                        </label>
+                        <label key="answer3" htmlFor="answer1">Answer 3
+                          <input type="text" name="answer3" id="answer3" placeholder="Create an option for the streamer" />
+                        </label>
                         <button className="questionSubmit">Submit</button>
                     </div>
                 </div>
