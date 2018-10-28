@@ -4,7 +4,6 @@ import MakeQuestion from "../MakeQuestion/MakeQuestion"
 import BaseState from "../BaseState/BaseState"
 import Question from "../Question/Question"
 import Answer from "../Answer/Answer"
-import BroadCastUI from "../BroadCastUI/BroadCastUI"
 
 import './App.css'
 
@@ -106,7 +105,6 @@ export default class App extends React.Component{
                     <MakeQuestion />
                     <Question />
                     <Answer />
-                    <BroadCastUI />
                   </div>
               </div>
             )

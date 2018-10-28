@@ -1,16 +1,22 @@
 #containingdiv{
   font-family: Helvetica, Arial, sans-serif;
   --purple: #6441A4;
-  background-color: red;
 }
 
-#titlediv1{
-  position: relative;
+.broadcastUI header {
+  height: 69px;
   width: 100%;
-  height:80px;
-  border: red 1px solid;
-  margin-top: none;
+  background-color: var(--purple);
+  color: #FFF;
   text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  position: relative;
+  margin-top: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #broadcastForm{
@@ -26,4 +32,55 @@
   color: var(--purple);
   font-size: 18px;
   margin-top: 10px;
+}
+
+.broadcastUI .questionGroup {
+  border-bottom: 1px solid #D3D3D3;
+  padding: 10px;
+}
+.broadcastUI .questionGroup h3.question {
+  margin: 0;
+}
+
+.broadcastUI .questionGroup .options {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.broadcastUI .questionGroup .option {
+  height: 22px;
+  width: 251px;
+  border: solid black 1px;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin-bottom: 3px;
+}
+
+.broadcastUI .questionGroup .approve,
+.broadcastUI .questionGroup .deny  {
+    background-color: var(--purple);
+    color: #FFF;
+    width: 50%;
+    height: 25px;
+    align-self: center;
+    border-radius: 3px;
+}
+
+.broadcastUI .questionGroup button.disabled {
+  pointer-events: none;
+  background-color: grey;
+}
+
+.broadcastUI .questionGroup .approve {
+  background-color: green;
+}
+
+.broadcastUI .questionGroup .deny {
+  background-color: red;
 }
