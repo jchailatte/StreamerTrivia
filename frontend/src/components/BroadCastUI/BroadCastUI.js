@@ -14,38 +14,30 @@ export default class BroadCastUI extends React.Component{
 
     componentDidMount(){
 
+
     }
+    updateques(question)
+      {
+          var tab = document.getElementById("table");
+          var row = tab.insertRow(tab.row.length);
+          var cell1 = row.insertCell(0);
+        //  cell1.innerHTML =
+      }
 
     render(){
             return (
               <div id="containingdiv">
-                <div id = "titlediv">
-                    	<form id = "form">
-                    	    <span id = "title">Number of Q's</span>
-        			        <input type="number" max ="30" min = "0" id = "enter" placeholder="##"/>
-                      <button id = "submit">Initiate Question</button>
+                <header id = "titlediv1">
+                    	<form id = "broadcastForm">
+                      Number of Q's
+        			        <input type="number" margin-left="5px" max ="30" min = "0" id = "enter" placeholder="##"/>
+                      <br/>
+                      <button id = "submitQuestions">Initiate Question</button>
+                      <br/>
+
         		    	    </form>
+                </header>
                 </div>
-
-                <table id = "queue"/>
-                <tr>
-        			     <th></th>
-        		    </tr>
-        		    </table>
-                </div>
-          //
-          // <div>
-          //     <script>
-          //         function updateques(question)
-          //         {
-          //             var tab = document.getElementById("table");
-          //             var row = tab.insertRow(tab.row.length);
-          //             var cell1 = row.insertCell(0);
-          //           //  cell1.innerHTML =
-          //         }
-          //     </script>
-          // </div>
-
         )
 
   }

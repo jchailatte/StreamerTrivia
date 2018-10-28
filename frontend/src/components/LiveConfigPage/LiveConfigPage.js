@@ -1,5 +1,7 @@
 import React from 'react'
 import Authentication from '../../util/Authentication/Authentication'
+import BroadCastUI from "../BroadCastUI/BroadCastUI"
+
 
 import './LiveConfigPage.css'
 
@@ -8,7 +10,7 @@ export default class LiveConfigPage extends React.Component{
         super(props)
         this.Authentication = new Authentication()
 
-        //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null. 
+        //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.twitch = window.Twitch ? window.Twitch.ext : null
         this.state={
             finishedLoading:false,
@@ -40,7 +42,7 @@ export default class LiveConfigPage extends React.Component{
 
             this.twitch.listen('broadcast',(target,contentType,body)=>{
                 this.twitch.rig.log(`New PubSub message!\n${target}\n${contentType}\n${body}`)
-                // now that you've got a listener, do something with the result... 
+                // now that you've got a listener, do something with the result...
 
                 // do something...
 
@@ -57,14 +59,13 @@ export default class LiveConfigPage extends React.Component{
             this.twitch.unlisten('broadcast', ()=>console.log('successfully unlistened'))
         }
     }
-    
+
     render(){
         if(this.state.finishedLoading){
             return (
                 <div className="LiveConfigPage">
                     <div className={this.state.theme === 'light' ? 'LiveConfigPage-light' : 'LiveConfigPage-dark'} >
-                        <p>Hello world!</p>
-                        <p>This is the live config page! </p>
+                      <BroadCastUI/>
                     </div>
                 </div>
             )
