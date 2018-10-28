@@ -9,7 +9,7 @@ export default class Question extends React.Component{
         //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.state={
             name:'ExampleName',
-            answers:[''],
+            answers:['Dragon', 'Unicorn', 'Fish'],
             time: '123'
         }
     }
@@ -41,7 +41,24 @@ export default class Question extends React.Component{
       })
     }
 
+      // turns selected answer purple and greys the rest out
+    handleOptionSelect(e, selectedAnswer) {
+      e.currentTarget.classList.add('selected');
+
+      let notSelected = document.querySelectorAll('div.option:not(.selected)');
+
+      notSelected.forEach(notSelect => {
+        notSelect.classList.add('disabled');
+      });
+    }
+
     render(){
+            let answers = this.state.answers.map((answer, index) => {
+              return (
+                <div key={index} index={index} className="option" onClick={(e) => this.handleOptionSelect(e, answer, index)}>{answer}</div>
+              );
+            });
+
             return (
                 <div className="Question">
                     <header>
@@ -51,9 +68,7 @@ export default class Question extends React.Component{
                     <div className="questionForm">
                         <div className ="qViewer"> How do you think {this.state.name} will respond to this question? </div>
                         <label htmlFor="question">What's your ideal fantasy pet?</label>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Unicorn </div> <br/>
-                        <div className="option"> Fish </div>
+                        {answers}
                         <div className="countdown"> {this.state.time} seconds left to answer</div>
                     </div>
 
