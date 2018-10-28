@@ -50,13 +50,28 @@ export default class Question extends React.Component{
                     </header>
                     <div className="questionForm">
                         <div className ="qViewer"> How do you think {this.state.name} will respond to this question? </div>
-                        <label htmlFor="question">What's your ideal fantasy pet?</label>
-                        <div className="option"> Dragon </div> <br/>
-                        <div className="option"> Unicorn </div> <br/>
-                        <div className="option"> Fish </div>
+                        <label htmlFor="question">{sessionStorage.getItem("question")}</label>
+                        <div className="option" onClick={() => {
+                          console.log('CALLING ONCLICK')
+                          this.props.changeRender("answer");
+                          // sessionStorage.setItem("state", "makeq");
+                          console.log('aaaAAAAAAA');
+                        }}> Dragon </div> <br/>
+                        <div className="option" onClick={() => {
+                          console.log('CALLING ONCLICK')
+                          this.props.changeRender("answer");
+                          // sessionStorage.setItem("state", "makeq");
+                          console.log('aaaAAAAAAA');
+                        }}> Unicorn </div> <br/>
+                        <div className="option" onClick={() => {
+                          console.log('CALLING ONCLICK')
+                          this.props.changeRender("answer");
+                          // sessionStorage.setItem("state", "makeq");
+                          console.log('aaaAAAAAAA');
+                        }}> Fish </div>
                         <div className="countdown"> {this.state.time} seconds left to answer</div>
                     </div>
-
+                    {console.log(sessionStorage.getItem("name"))}
                 </div>
             )
 

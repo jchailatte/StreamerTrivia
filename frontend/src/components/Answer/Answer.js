@@ -18,6 +18,10 @@ export default class Answer extends React.Component{
 
     }
 
+    StoreSession(){
+      sessionStorage.setItem("state", document.getElementbyID("answer").value);
+    }
+
     render(){
             return (
                 <div className="Answer">
@@ -29,15 +33,20 @@ export default class Answer extends React.Component{
                         <div className ="text"> {this.state.name}'s response: </div>
                         <div className="question">What's your ideal fantasy pet?</div>
                         <div className="answerContainer">
-                          <div className="answerNot"> Dragon </div>
+                          <div className="answerNot" > Dragon </div>
                         </div>
                         <div className="answerContainer">
                           <div className="answerYes"> Unicorn </div>
                         </div>
                         <div className="answerContainer">
-                          <div className="answerNot"> Fish </div>
+                          <div className="answerNot" nClick={() => {
+                            console.log('CALLING ONCLICK')
+                            this.props.changeRender("base");
+                            // sessionStorage.setItem("state", "makeq");
+                            console.log('aaaAAAAAAA');
+                          }}> Fish </div>
                         </div>
-                        <div className="countdown"> {this.state.time} seconds left to next question</div>
+                        <div className="countdown" o> {this.state.time} seconds left to next question</div>
                     </div>
                 </div>
             )

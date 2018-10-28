@@ -12,14 +12,14 @@ export default class App extends React.Component{
     constructor(props){
         super(props)
         this.Authentication = new Authentication()
-
+        this.changeRender = this.changeRender.bind(this)
         //if the extension is running on twitch or dev rig, set the shorthand here. otherwise, set to null.
         this.twitch = window.Twitch ? window.Twitch.ext : null
         this.state={
             finishedLoading:false,
             theme:'light',
             isVisible:true,
-            render:'welcome'
+            render:'base'
         }
     }
 
@@ -39,6 +39,12 @@ export default class App extends React.Component{
         })
     }
 
+    changeRender(pageName){
+      this.setState({
+        render: pageName,
+      });
+    }
+
     componentDidMount(){
         if(this.twitch){
             this.twitch.onAuthorized((auth)=>{
@@ -53,25 +59,6 @@ export default class App extends React.Component{
                 }
             })
 
-            this.twitch.listen('broadcast',(target,contentType,body)=>{
-                this.twitch.rig.log(`New PubSub message!\n${target}\n${contentType}\n${body}`)
-                // now that you've got a listener, do something with the result...
-
-                switch (body) {
-                  case 'create':
-                    this.setState(render:'create')
-                    break;
-                  case 'answer':
-
-                    break;
-
-                  default:
-
-                }
-                // do something...
-
-            })
-
             this.twitch.onVisibilityChanged((isVisible,_c)=>{
                 this.visibilityChanged(isVisible)
             })
@@ -82,40 +69,61 @@ export default class App extends React.Component{
         }
     }
 
-    componentWillUnmount(){
-        if(this.twitch){
-            this.twitch.unlisten('broadcast', ()=>console.log('successfully unlistened'))
-        }
-    }
-
     render(){
         if(this.state.finishedLoading && this.state.isVisible){
-            if(this.state.render==='answer'){
+          switch(this.state.render){
+            case "base":
               return (
                 <div className="App">
                     <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
-                      <Answer />
+                      <BaseState changeRender={this.changeRender}/>
                     </div>
                 </div>
               )
-            }
-            return (
-              <div className="App">
-                  <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
-                    <BaseState />
-                    <MakeQuestion />
-                    <Question />
-                    <Answer />
-                    <BroadCastUI />
-                  </div>
-              </div>
-            )
-        }else{
-            return (
+              break;
+            case "makeq":
+              return (
                 <div className="App">
+                    <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
+                      <MakeQuestion changeRender={this.changeRender} />
+                    </div>
                 </div>
-            )
-        }
+              )
+              break;
+              case "question":
+                return (
+                  <div className="App">
+                      <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
+                        <Question changeRender={this.changeRender}/>
+                      </div>
+                  </div>
+                )
+                break;
+              case "answer":
+                return (
+                  <div className="App">
+                      <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
+                        <Answer changeRender={this.changeRender}/>
+                      </div>
+                  </div>
+                )
+                break;
+              default:
+                return (
+                  <div className="App">
+                      <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
+                        <BaseState changeRender={this.changeRender}/>
+                      </div>
+                  </div>
+                )
+                break;
 
+
+          }
+    }else{
+      return (
+        <div></div>
+      )
     }
+}
 }
