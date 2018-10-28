@@ -9,3 +9,8 @@
 .App-dark{
     color:#e5e3e8;
 }
+
+textarea,
+input {
+    box-sizing : border-box;
+}
